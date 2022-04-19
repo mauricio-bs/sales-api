@@ -1,0 +1,27 @@
+{
+	"root": true,
+	"parser": "@typescript-esling/parser",
+	"plugins": [
+		"@typescript-eslint/plugin",
+		"prettier",
+		"eslint-plugin-import-helpers"
+	],
+	"extends": [
+		"eslint:recommended",
+		"plugin:typescript-eslint/eslint-recommended",
+		"plugin:typescript-eslint/recommended",
+		"plugin:prettier/recommended"
+	],
+	"rules": {
+		"no-console": "warn",
+		"prettier/prettier": "error",
+		"import-helpers/order-imports": [
+			"warn",
+			{
+				"newlinesBetween": "always", // new line between groups
+				"groups": ["module", "/^@shared/", ["parent", "sibling", "index"]],
+				"alphabetize": { "order": "asc", "ignoreCase": true }
+			}
+		]
+	}
+}
