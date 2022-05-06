@@ -1,4 +1,4 @@
-import RedisCache from '@shared/cache/RedisCache';
+import redisCache from '@shared/cache/RedisCache';
 import AppError from '@shared/errors/AppError';
 import { getCustomRepository } from 'typeorm';
 import Product from '../typeorm/entities/Product';
@@ -14,8 +14,6 @@ export default class CreateProductService {
 	public async execute({ name, price, quantity }: IRequest): Promise<Product> {
 		const productsRepository = getCustomRepository(ProductsRepository);
 		const producNametExists = await productsRepository.findByName(name);
-
-		const redisCache = new RedisCache();
 
 		if (producNametExists) {
 			throw new AppError('There is already one product with this name');
