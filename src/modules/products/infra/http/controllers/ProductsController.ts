@@ -1,13 +1,15 @@
-import CreateProductService from '@modules/products/services/CreateProductService';
-import DeleteProductService from '@modules/products/services/DeleteProductService';
+import { container } from 'tsyringe';
+import { Request, Response } from 'express';
+
 import ListProductService from '@modules/products/services/ListProductService';
 import ShowProductService from '@modules/products/services/ShowProductService';
+import CreateProductService from '@modules/products/services/CreateProductService';
 import UpdateProductService from '@modules/products/services/UpdateProductService';
-import { Request, Response } from 'express';
+import DeleteProductService from '@modules/products/services/DeleteProductService';
 
 export default class ProductsController {
 	public async index(req: Request, res: Response): Promise<Response> {
-		const listProducts = new ListProductService();
+		const listProducts = container.resolve(ListProductService);
 
 		const products = listProducts.execute();
 
@@ -17,7 +19,7 @@ export default class ProductsController {
 	public async show(req: Request, res: Response): Promise<Response> {
 		const { id } = req.params;
 
-		const showProduct = new ShowProductService();
+		const showProduct = container.resolve(ShowProductService);
 
 		const product = await showProduct.execute(id);
 
@@ -27,7 +29,7 @@ export default class ProductsController {
 	public async create(req: Request, res: Response): Promise<Response> {
 		const { name, price, quantity } = req.body;
 
-		const createProduct = new CreateProductService();
+		const createProduct = container.resolve(CreateProductService);
 
 		await createProduct.execute({ name, price, quantity });
 
@@ -38,9 +40,9 @@ export default class ProductsController {
 		const { id } = req.params;
 		const { name, price, quantity } = req.body;
 
-		const updateProduct = new UpdateProductService();
+		const updateProduct = container.resolve(UpdateProductService);
 
-		await updateProduct.execute({ id, name, price, quantity });
+		await updateProduct.execute(id, { name, price, quantity });
 
 		return res.status(202).send();
 	}
@@ -48,7 +50,7 @@ export default class ProductsController {
 	public async delete(req: Request, res: Response): Promise<Response> {
 		const { id } = req.params;
 
-		const deleteProduct = new DeleteProductService();
+		const deleteProduct = container.resolve(DeleteProductService);
 
 		await deleteProduct.execute(id);
 
