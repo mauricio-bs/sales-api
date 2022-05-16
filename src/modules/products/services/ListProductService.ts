@@ -1,6 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 import redisCache from '@shared/cache/RedisCache';
 import { IProduct } from '../domain/models/IProduct';
+import { IPaginatedProducts } from '../domain/models/IPaginatedProducts';
 import { IProductsRepository } from '../domain/repositories/IProductsRepository';
 
 @injectable()
@@ -10,7 +11,7 @@ export default class ListProductService {
 		private productsRepository: IProductsRepository,
 	) {}
 
-	public async execute(): Promise<IProduct[] | null> {
+	public async execute(): Promise<IProduct[] | IPaginatedProducts[] | null> {
 		let products = await redisCache.recover<IProduct[]>(
 			'api-vendas-PRODUCT_LIST',
 		);
