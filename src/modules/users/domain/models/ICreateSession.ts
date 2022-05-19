@@ -1,4 +1,6 @@
-export interface ICreateSesstion {
-	email: string;
-	password: string;
+import { IUser } from './IUser';
+
+export interface ICreateSession {
+	user: IUser;
+	token: string;
 }
