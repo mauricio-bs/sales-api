@@ -2,15 +2,10 @@ import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import authConfig from '@config/auth';
 import { inject, injectable } from 'tsyringe';
-import { IUser } from '../domain/models/IUser';
 import AppError from '@shared/errors/AppError';
-import { ICreateSesstion } from '../domain/models/ICreateSession';
+import { ICreateSesstionRequest } from '../domain/models/ICreateSessionRequest';
 import { IUsersRepository } from '../domain/repositories/IUsersRepository';
-
-interface IResponse {
-	user: IUser;
-	token: string;
-}
+import { ICreateSession } from '../domain/models/ICreateSession';
 
 @injectable()
 export default class CreateSessionsService {
@@ -21,7 +16,7 @@ export default class CreateSessionsService {
 	public async execute({
 		email,
 		password,
-	}: ICreateSesstion): Promise<IResponse> {
+	}: ICreateSesstionRequest): Promise<ICreateSession> {
 		const user = await this.usersRepository.findByEmail(email);
 		if (!user) {
 			throw new AppError('Incorrect email / password combination', 401);
