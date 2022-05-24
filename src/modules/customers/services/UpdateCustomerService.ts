@@ -1,12 +1,8 @@
 import AppError from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
+import { ICreateCustomer } from '../domain/models/ICreateCustomer';
 import { ICustomer } from '../domain/models/ICustomer';
 import { ICustomersRepository } from '../domain/repositories/ICustomersRepository';
-
-interface IRequest {
-	name: string;
-	email: string;
-}
 
 @injectable()
 export default class UpdateCustomerService {
@@ -17,13 +13,13 @@ export default class UpdateCustomerService {
 
 	public async execute(
 		id: string,
-		{ name, email }: IRequest,
+		{ name, email }: ICreateCustomer,
 	): Promise<ICustomer> {
 		const customer = await this.customersRepository.findById(id);
 		if (!customer) throw new AppError('Customer not found');
 
 		const customerExists = await this.customersRepository.findByEmail(email);
-		if (customerExists && customerExists.email !== email) {
+		if (customerExists && customerExists.id !== customer.id) {
 			throw new AppError('There is already one customer with this email.');
 		}
 
