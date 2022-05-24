@@ -10,7 +10,7 @@ export default class CustomersController {
 	public async index(req: Request, res: Response): Promise<Response> {
 		const listCustomers = container.resolve(ListCustomerService);
 
-		const customers = listCustomers.execute();
+		const customers = await listCustomers.execute();
 
 		return res.status(200).json(customers);
 	}

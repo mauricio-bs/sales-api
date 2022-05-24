@@ -52,7 +52,7 @@ class CustomersRepository implements ICustomersRepository {
 	}
 
 	public async remove(customer: ICustomer): Promise<void> {
-		await this.ormRepository.delete(customer);
+		await this.ormRepository.remove(customer);
 	}
 }
 
