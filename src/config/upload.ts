@@ -25,7 +25,7 @@ export default {
 	tmpFolder,
 	multer: {
 		storage: multer.diskStorage({
-			destination: uploadFolder,
+			destination: tmpFolder,
 			filename(req, file, callback) {
 				const fileHash = crypto.randomBytes(10).toString('hex');
 
