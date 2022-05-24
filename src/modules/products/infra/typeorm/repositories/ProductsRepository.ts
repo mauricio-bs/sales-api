@@ -57,7 +57,7 @@ export default class ProductsRepository implements IProductsRepository {
 		return product;
 	}
 
-	public async remove(product: IProduct): Promise<void> {
-		await this.ormRepository.delete(product);
+	public async remove(product: Product): Promise<void> {
+		await this.ormRepository.remove(product);
 	}
 }

@@ -11,7 +11,7 @@ export default class ProductsController {
 	public async index(req: Request, res: Response): Promise<Response> {
 		const listProducts = container.resolve(ListProductService);
 
-		const products = listProducts.execute();
+		const products = await listProducts.execute();
 
 		return res.status(200).json(products);
 	}
