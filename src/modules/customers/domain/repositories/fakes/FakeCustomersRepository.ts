@@ -28,11 +28,11 @@ class FakeCustomersRepository implements ICustomersRepository {
 			from: 0,
 			to: 0,
 			per_page: 50,
-			total: 0,
+			total: this.customers.length,
 			current_page: 0,
 			prev_page: null,
 			next_page: null,
-			data: [],
+			data: this.customers,
 		};
 	}
 
