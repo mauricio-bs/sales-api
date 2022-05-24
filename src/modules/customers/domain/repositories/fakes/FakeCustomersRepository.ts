@@ -57,7 +57,13 @@ class FakeCustomersRepository implements ICustomersRepository {
 		return customer;
 	}
 
-	public async remove(customer: ICustomer): Promise<void> {}
+	public async remove(customer: ICustomer): Promise<void> {
+		const customerIndex = this.customers.findIndex(
+			lcustomer => lcustomer.id === customer.id,
+		);
+
+		this.customers.splice(customerIndex, 1);
+	}
 }
 
 export default FakeCustomersRepository;
