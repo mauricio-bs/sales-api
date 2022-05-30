@@ -11,3 +11,4 @@ dist
 uploads/*
 !uploads/.gitkeep
 .DS_Store
+.docker/dbData
