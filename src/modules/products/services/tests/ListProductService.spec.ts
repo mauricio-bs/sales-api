@@ -21,6 +21,6 @@ describe('List products service', () => {
 
 		const products = await listProductService.execute();
 
-		expect(products).toContain(createdProduct);
+		expect(products).toEqual([createdProduct]);
 	});
 });
