@@ -11,7 +11,7 @@ import { IHashProvider } from '../providers/HashProvider/models/IHashProvider';
 export default class CreateSessionsService {
 	constructor(
 		@inject('UsersRepository') private usersRepository: IUsersRepository,
-		@inject('HashContainer') private hashProvider: IHashProvider,
+		@inject('HashProvider') private hashProvider: IHashProvider,
 	) {}
 
 	public async execute({
