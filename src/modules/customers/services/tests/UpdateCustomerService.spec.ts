@@ -1,6 +1,5 @@
 import 'reflect-metadata';
 import UpdateCustomerService from '../UpdateCustomerService';
-import CreateCustomerService from '../CreateCustomerService';
 import FakeCustomersRepository from '@modules/customers/domain/repositories/fakes/FakeCustomersRepository';
 import AppError from '@shared/errors/AppError';
 
@@ -49,13 +48,8 @@ describe('Update customer service', () => {
 	});
 
 	it('should not update customer by invalid id', async () => {
-		const customer = await fakeCustomersRepository.create({
-			name: 'Mauricio Schimit',
-			email: 'email@teste.com',
-		});
-
 		expect(
-			updateCustomer.execute(customer.id + 'invalid', {
+			updateCustomer.execute('randomIvalidId61651', {
 				name: 'test user',
 				email: 'update@email.com',
 			}),
