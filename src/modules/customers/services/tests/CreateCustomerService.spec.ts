@@ -14,12 +14,12 @@ describe('Create customer service', () => {
 	});
 
 	it('should be able to create a new customer', async () => {
-		const customer = await createCustomer.execute({
-			name: 'Mauricio Schimit',
-			email: 'email@teste.com',
-		});
-
-		expect(customer).toHaveProperty('id');
+		expect(
+			createCustomer.execute({
+				name: 'Mauricio Schimit',
+				email: 'email@teste.com',
+			}),
+		).resolves.toHaveProperty('id');
 	});
 
 	it('should not be able to create two customers with the same email', async () => {
