@@ -189,7 +189,10 @@ export default {
 	// watchman: true,
 
 	// A number limiting the number of tests that are allowed to run at the same time
-	maxConcurrency: 5,
+	maxConcurrency: 8,
+
+	//Specifies the maximum number of workers the worker-pool will spawn for running tests
+	// maxWorkers: '60%',
 
 	// Default timeout of a test in milliseconds, default is 5000.
 	// testTimeout: 10000,
