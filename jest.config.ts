@@ -29,9 +29,7 @@ export default {
 	coverageDirectory: 'coverage',
 
 	// An array of regexp pattern strings used to skip coverage collection
-	// coveragePathIgnorePatterns: [
-	//   "/node_modules/"
-	// ],
+	coveragePathIgnorePatterns: ['/node_modules/'],
 
 	// Indicates which provider should be used to instrument code for coverage
 	coverageProvider: 'v8',
@@ -182,11 +180,17 @@ export default {
 	// unmockedModulePathPatterns: undefined,
 
 	// Indicates whether each individual test should be reported during the run
-	// verbose: undefined,
+	verbose: true,
 
 	// An array of regexp patterns that are matched against all source file paths before re-running tests in watch mode
 	// watchPathIgnorePatterns: [],
 
 	// Whether to use watchman for file crawling
 	// watchman: true,
+
+	// A number limiting the number of tests that are allowed to run at the same time
+	maxConcurrency: 5,
+
+	// Default timeout of a test in milliseconds, default is 5000.
+	// testTimeout: 10000,
 };
