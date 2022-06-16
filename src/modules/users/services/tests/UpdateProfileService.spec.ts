@@ -79,4 +79,22 @@ describe('Update profile service', () => {
 			}),
 		).rejects.toBeInstanceOf(AppError);
 	});
+
+	it('should fail to update password without send the old password', async () => {
+		const user = await fakeUsersRepository.create({
+			name: 'test user',
+			email: 'email@gmail.com',
+			password: '12345',
+		});
+
+		if (!user) throw new Error('Fail to create user');
+
+		expect(
+			updateProfileService.execute(user.id, {
+				name: 'test user',
+				email: 'email@gmail.com',
+				password: 'abc123456',
+			}),
+		).rejects.toBeInstanceOf(AppError);
+	});
 });
