@@ -16,7 +16,7 @@ services:
   db:
     build: .docker/postgres
     container_name: salesapi-db
-    restart: always
+    restart: unless-stopped
     tty: true
     ports:
       - '5432:5432'
